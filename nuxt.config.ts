@@ -3,6 +3,13 @@ export default defineNuxtConfig({
 	compatibilityDate: '2024-11-01',
 	devtools: { enabled: true },
 
+	// env, пожалуйста, создайте в корне проекта env c именем NUXT_PUBLIC_API_HOST
+	runtimeConfig: {
+		public: {
+			api: process.env.NUXT_PUBLIC_API_HOST,
+		}
+	},
+
 	// css base configuration
 	css: ['@/assets/styles/index.scss'],
 

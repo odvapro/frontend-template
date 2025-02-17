@@ -14,6 +14,12 @@
                 <NuxtLink class="header__navigation-link" to="/components">
                     Все компоненты
                 </NuxtLink>
+                <NuxtLink class="header__navigation-link" to="/api">
+                    Апишки
+                </NuxtLink>
+                <NuxtLink class="header__navigation-link" to="/pinia">
+                    Стор
+                </NuxtLink>
             </nav>
         </header>
     </div>
