@@ -28,3 +28,22 @@ a { text-decoration: none; }
 
 .v-enter-from,
 .v-leave-to { opacity: 0; }
+
+// toaster
+.v-toast { z-index: 999999!important; padding: 10px!important; }
+
+.v-toast__item
+{
+	min-height: 0!important;
+	border-radius: 0!important;
+	padding: 10px 20px;
+
+	.v-toast__icon { display: none!important; }
+	.v-toast__text
+	{
+		padding: 0!important;
+		color: $white!important;
+	}
+
+	&--error { background-color: $red!important; }
+}

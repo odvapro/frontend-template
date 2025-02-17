@@ -8,11 +8,13 @@
 
 <template>
 	<div class="index-page container">
-		<h1 class="index-page__title">Добро пожаловать в наш "nuxt3-template"</h1>
+		<h1 class="g-h1">Добро пожаловать в наш "nuxt3-template"</h1>
 		<div class="index-page__buttons">
-			<UiButton>
-				показать форму
-			</UiButton>
+			<NuxtLink to="/form">
+				<UiButton>
+					показать форму
+				</UiButton>
+			</NuxtLink>
 			<NuxtLink to="/components">
 				<UiButton :variant="'border'">
 					показать UI компоненты
@@ -23,13 +25,6 @@
 </template>
 
 <style lang='scss'>
-	.index-page__title
-	{
-		margin-bottom: 25px;
-		font-size: 3.5rem;
-		text-align: center;
-	}
-
 	.index-page__buttons
 	{
 		display: flex;

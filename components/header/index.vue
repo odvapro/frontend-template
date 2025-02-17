@@ -8,7 +8,7 @@
                 <NuxtLink class="header__navigation-link" to="/">
                     Главная
                 </NuxtLink>
-                <NuxtLink class="header__navigation-link">
+                <NuxtLink class="header__navigation-link" to="/form">
                     Форма
                 </NuxtLink>
                 <NuxtLink class="header__navigation-link" to="/components">

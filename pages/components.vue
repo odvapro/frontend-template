@@ -12,11 +12,16 @@
 		phone: '',
 		error: '',
 		errorText: '',
+		icon: '',
 	});
+
+	const checkbox = ref(false);
+	const checkboxError = ref(false);
 </script>
 
 <template>
 	<div class="components container">
+		<!-- кнопки -->
 		<h2 class="components__subtitle">
 			Вариации кнопок
 		</h2>
@@ -34,6 +39,8 @@
 				disabled
 			</UiButton>
 		</div>
+
+		<!-- инпуты -->
 		<h2 class="components__subtitle">
 			Вариации инпутов
 		</h2>
@@ -62,6 +69,14 @@
 				:placeholder="'phone input'"
 			/>
 			<UiInput
+				v-model:value="inputs.icon"
+				type="text"
+				:placeholder="'icon input'"
+				@triggerIcon="useToast('info', 'click icon')"
+			>
+				<IconsClose />
+			</UiInput>
+			<UiInput
 				v-model:value="inputs.error"
 				type="text"
 				:error="true"
@@ -74,6 +89,52 @@
 				:errorText="'errorText input'"
 				:placeholder="'errorText input'"
 			/>
+		</div>
+
+		<!-- уведомления -->
+		<h2 class="components__subtitle">
+			Вариации уведомлений
+		</h2>
+		<div class="components__wrapper">
+			<UiButton @click="useToast('success', 'success')">
+				success
+			</UiButton>
+			<UiButton @click="useToast('warning', 'warning')">
+				warning
+			</UiButton>
+			<UiButton @click="useToast('info', 'info')">
+				info
+			</UiButton>
+			<UiButton @click="useToast('error', 'error')">
+				error
+			</UiButton>
+		</div>
+
+		<!-- аккордеон -->
+		<h2 class="components__subtitle">
+			аккордеон
+		</h2>
+		<div class="components__wrapper">
+			<UiAccordion :title="'это аккордеон'">
+				Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nobis deserunt odio sed, rem nisi aliquam tempora reprehenderit, porro quos rerum atque similique, cupiditate at modi molestias harum? Quas, veniam numquam. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nobis deserunt odio sed, rem nisi aliquam tempora reprehenderit, porro quos rerum atque similique, cupiditate at modi molestias harum? Quas, veniam numquam. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nobis deserunt odio sed, rem nisi aliquam tempora reprehenderit, porro quos rerum atque similique, cupiditate at modi molestias harum? Quas, veniam numquam.
+			</UiAccordion>
+		</div>
+
+		<!-- skeleton -->
+		<h2 class="components__subtitle">
+			skeleton
+		</h2>
+		<div class="components__wrapper">
+			<UiSkeleton v-for="el in 10" :key="el" />
+		</div>
+
+		<!-- checkbox -->
+		<h2 class="components__subtitle">
+			checkbox
+		</h2>
+		<div class="components__wrapper">
+			<UiCheckbox v-model:value="checkbox">checkbox {{ checkbox }}</UiCheckbox>
+			<UiCheckbox v-model:value="checkboxError" :error="!checkboxError ? true : false">checkboxError {{ checkboxError }}</UiCheckbox>
 		</div>
 	</div>
 </template>
@@ -96,5 +157,11 @@
 		align-items: end;
 		flex-wrap: wrap;
 		gap: 20px;
+
+		.ui-skeleton
+		{
+			width: 200px;
+			height: 100px;
+		}
 	}
 </style>
