@@ -14,6 +14,10 @@
 			<slot />
 		</main>
 	</div>
+
+	<Teleport to="body">
+		<HugePreloader v-if="loading" />
+	</Teleport>
 </template>
 
 <style lang='scss'>

@@ -11,6 +11,11 @@
 	color: $black;
 }
 
+body
+{
+	&:has(.huge-preloader) { overflow: hidden; }
+}
+
 a { text-decoration: none; }
 
 .container
