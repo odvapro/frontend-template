@@ -5,7 +5,19 @@ export default defineNuxtConfig({
 
 	modules: [
 		'@pinia/nuxt',
+		'@nuxtjs/tailwindcss',
+		"@nuxtjs/color-mode",
+		'shadcn-nuxt',
 	],
+
+	shadcn: {
+		prefix: '',
+		componentDir: './components/shadcn-ui/'
+	},
+
+	colorMode: {
+		classSuffix: "",
+	},
 
 	// env, пожалуйста, создайте в корне проекта env c именем NUXT_PUBLIC_API_HOST
 	runtimeConfig: {
