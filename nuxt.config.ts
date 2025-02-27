@@ -19,14 +19,16 @@ export default defineNuxtConfig({
 		classSuffix: "",
 	},
 
-	// env, пожалуйста, создайте в корне проекта env c именем NUXT_PUBLIC_API_HOST
-	runtimeConfig: {
-		public: {
-			api: process.env.NUXT_PUBLIC_API_HOST,
-		}
-	},
+	// env, пожалуйста, создайте в корне проекта env c именем NUXT_PUBLIC_API_HOST, если это требуется ⬇️
 
-	// если вам нужно проксировать получение данных с элемента - раскоментируйте код ниже и добавьте данные в env файл с ключом process.env.NUXT_PUBLIC_ELEMENT_HOST
+	// runtimeConfig: {
+	// 	public: {
+	// 		api: process.env.NUXT_PUBLIC_API_HOST,
+	// 	}
+	// },
+
+	// если вам нужно проксировать получение данных с элемента ( или любые другие ) - раскоментируйте код ниже и добавьте данные в env файл с ключом process.env.NUXT_PUBLIC_ELEMENT_HOST ⬇️
+
 	// nitro: {
 	// 	devProxy: {
 	// 		'/element': {
