@@ -41,24 +41,24 @@
 В этом разделе будет подробно (по возможности) описана структура проекта, чтобы не возникало вопросов, что, где и почему
 
 Общая структура проекта будет выглядеть следующим образом:
-
-```mermaid
-graph TD;
-    nuxt-template-->api;
-    nuxt-template-->assets;
-    nuxt-template-->components;
-    nuxt-template-->composables;
-    nuxt-template-->layouts;
-    nuxt-template-->pages;
-    nuxt-template-->plugins;
-    nuxt-template-->public;
-    nuxt-template-->server;
-    nuxt-template-->utils;
-    assets-->;
-        fonts-->Ваши шрифты.
-        styles-->base;
-        styles-->index.scss;
-        styles-->tailwind.css;
+```
+Корень проекта /
+| - api
+| - assets
+| - components
+| - composables
+| - layouts
+| - pages
+| - plugins
+| - public
+| - server
+| - utils
+| - assets/
+|   |- fonts/.
+|   |- styles/;
+|        |- base/;
+|        |- index.scss;
+|        |- tailwind.css;
 ```
 
 Дальше разберем каждую по отдельности
@@ -222,9 +222,9 @@ npm run preview
 нотификации: https://www.npmjs.com/package/vue-toast-notification
 
 # Рекомендации
-Если вам нужно использовать слайдер на проекте: https://swiperjs.com/
-Если вам нужно использовать click-outside и другие приколы используйте: https://vueuse.org/
-Если вы не можете разобраться с grid сеткой: https://cssgrid-generator.netlify.app/
-Если вы не можете разобраться с flex сеткой: https://angrytools.com/css-flex/
-Если вам нужно конвертнуть фавиконку: https://favicon.io/favicon-converter/
-Если вам нужно конвертнуть шрифты: https://transfonter.org/
+- Если вам нужно использовать слайдер на проекте: https://swiperjs.com/
+- Если вам нужно использовать click-outside и другие приколы используйте: https://vueuse.org/
+- Если вы не можете разобраться с grid сеткой: https://cssgrid-generator.netlify.app/
+- Если вы не можете разобраться с flex сеткой: https://angrytools.com/css-flex/
+- Если вам нужно конвертнуть фавиконку: https://favicon.io/favicon-converter/
+- Если вам нужно конвертнуть шрифты: https://transfonter.org/
