@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+. "$(dirname "$0")/_/husky.sh"
+
+# Запуск тестов (если падают - коммит отменится)
+npm test run
