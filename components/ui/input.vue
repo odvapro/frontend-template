@@ -72,7 +72,7 @@
 				@input="updateValue($event.target.value)"
 			>
 			<div v-if="hasSlotContent" class="ui-input__icon" @click="emit('triggerIcon')">
-				<slot /> 
+				<slot />
 			</div>
 		</div>
 
