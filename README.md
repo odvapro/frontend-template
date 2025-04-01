@@ -197,19 +197,19 @@ const add = (a, b) => {
 - Цепочка действий компонентов: будет полезно написать тест для последовательного выполнения цепочки действий, например: есть форма с несколькими шагами и возможными различными исходами.
 
 ## Основные методы и функции для тестов
-<span style="background-color:rgb(49, 49, 49); color: red; padding: 2px; border-radius: 3px">describe</span> <br>
-Метод <span style="background-color:rgb(49, 49, 49); color: red; padding: 2px; border-radius: 3px">describe</span> нужен для группировки связанных тестов.
+*<span style="background-color:rgb(49, 49, 49); color: red; padding: 2px; border-radius: 3px">describe</span>* <br>
+Метод *<span style="background-color:rgb(49, 49, 49); color: red; padding: 2px; border-radius: 3px">describe</span>* нужен для группировки связанных тестов.
 
-<span style="background-color:rgb(49, 49, 49); color: red; padding: 2px; border-radius: 3px">test</span> и <span style="background-color:rgb(49, 49, 49); color: red; padding: 2px; border-radius: 3px">it</span><br>
-Метод <span style="background-color:rgb(49, 49, 49); color: red; padding: 2px; border-radius: 3px">test</span> используется для создания и определения отдельного теста. Он принимает два аргумента:
+*<span style="background-color:rgb(49, 49, 49); color: red; padding: 2px; border-radius: 3px">test</span>* и *<span style="background-color:rgb(49, 49, 49); color: red; padding: 2px; border-radius: 3px">it</span>*<br>
+Метод *<span style="background-color:rgb(49, 49, 49); color: red; padding: 2px; border-radius: 3px">test / it</span>* используется для создания и определения отдельного теста. Он принимает два аргумента:
 
 - **Первый аргумент** — строка, описывающая, что именно проверяется в тесте. Это название теста, которое помогает понять, какой функционал тестируется.
 
 - **Второй аргумент** — функция, которая содержит код, выполняющий проверку (или сам тест). В этой функции обычно используется один или несколько методов для проверки утверждений.
 
-<span style="background-color:rgb(49, 49, 49); color: red; padding: 2px; border-radius: 3px">test</span> и <span style="background-color:rgb(49, 49, 49); color: red; padding: 2px; border-radius: 3px">it</span>  это практически идентичные функции,  разница только в названии. Испоьзуется в связке с <span style="background-color:rgb(49, 49, 49); color: red; padding: 2px; border-radius: 3px">describe</span> для лучшей читаемости.
+*<span style="background-color:rgb(49, 49, 49); color: red; padding: 2px; border-radius: 3px">test</span>* и *<span style="background-color:rgb(49, 49, 49); color: red; padding: 2px; border-radius: 3px">it</span>*  это практически идентичные функции,  разница только в названии. Испоьзуется в связке с *<span style="background-color:rgb(49, 49, 49); color: red; padding: 2px; border-radius: 3px">describe</span>* для лучшей читаемости.
 
-<span style="background-color:rgb(49, 49, 49); color: red; padding: 2px; border-radius: 3px">expect</span> <br>
+*<span style="background-color:rgb(49, 49, 49); color: red; padding: 2px; border-radius: 3px">expect</span>* <br>
 - Проверять соответствие значений ожидаемому результату
 
 - Тестировать различные условия
@@ -218,19 +218,30 @@ const add = (a, b) => {
 
 Основыные проверки:
 
-- <span style="background-color:rgb(49, 49, 49); color: greenyellow; padding: 2px; border-radius: 3px">.toBe()</span> - строгое сравнение (===)
+- ```js
+	.toBe() - строгое сравнение (===)
+	```
 
-- <span style="background-color:rgb(49, 49, 49); color: greenyellow; padding: 2px; border-radius: 3px">.toEqual()</span> - глубокое сравнение объектов
+- ```js
+	.toEqual() - глубокое сравнение объектов
+	```
 
-- <span style="background-color:rgb(49, 49, 49); color: greenyellow; padding: 2px; border-radius: 3px">.toBeTruthy()</span> - проверка на **true**
+- ```js
+	.toBeTruthy()</span> - проверка на true
+	```
 
-- <span style="background-color:rgb(49, 49, 49); color: greenyellow; padding: 2px; border-radius: 3px">.toBeFalsy()</span> - проверка на **false**
+- ```js
+	.toBeFalsy() - проверка на false
+	```
 
-- <span style="background-color:rgb(49, 49, 49); color: greenyellow; padding: 2px; border-radius: 3px">.toContain()</span> - проверка наличия в массиве
+- ```js
+	.toContain()</span> - проверка наличия в массиве
+	```
 
-- <span style="background-color:rgb(49, 49, 49); color: greenyellow; padding: 2px; border-radius: 3px">.toThrow()</span> - проверка на ошибку
-
-Настройка тестовой среды с использованием <span style="background-color:rgb(49, 49, 49); color: yellow; padding: 2px; border-radius: 3px">.toThrow()</span>
+- ```js
+	.toThrow() - проверка на ошибку
+	```
+Настройка тестовой среды с использованием Pinia
 
 ```js
 import { setActivePinia, createPinia } from 'pinia';
