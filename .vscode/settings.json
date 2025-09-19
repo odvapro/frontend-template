@@ -1,0 +1,52 @@
+{
+    "editor.tabSize": 4,
+    "editor.insertSpaces": false,
+    "editor.detectIndentation": false,
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": "explicit"
+    },
+    "prettier.tabWidth": 4,
+    "prettier.useTabs": true,
+    "prettier.semi": true,
+    "prettier.singleQuote": true,
+    "prettier.trailingComma": "es5",
+    "prettier.printWidth": 80,
+    "prettier.endOfLine": "lf",
+    "prettier.bracketSpacing": true,
+    "prettier.arrowParens": "avoid",
+    "prettier.vueIndentScriptAndStyle": true,
+    "prettier.htmlWhitespaceSensitivity": "ignore",
+    "[vue]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.tabSize": 4
+    },
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.tabSize": 4
+    },
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.tabSize": 4
+    },
+    "[json]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.tabSize": 4
+    },
+    "[css]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.tabSize": 4
+    },
+    "[scss]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.tabSize": 4
+    },
+    "[html]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.tabSize": 4
+    },
+    "[markdown]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.tabSize": 4
+    }
+}
