@@ -1,0 +1,182 @@
+---
+globs: *.js,*.vue,*.ts
+description: Code documentation and commenting guidelines
+---
+
+# Code Documentation Guidelines
+
+## When to Comment Code
+
+### Required Comments:
+- **Purpose explanation**: When code purpose is not obvious
+- **Complex algorithms**: Difficult logic that needs explanation
+- **Potential issues**: Known bugs or edge cases to watch for
+- **Developer intentions**: Non-obvious design decisions
+- **Critical sections**: Important code that needs understanding
+
+### When NOT to Comment:
+```javascript
+// ❌ Don't comment obvious code
+// This object represents a user
+const user = {
+	name: "John Doe",
+	age: 30,
+	email: "john.doe@example.com"
+}
+
+// ❌ Don't comment simple functions
+// Function to add two numbers
+const add = (a, b) => a + b
+```
+
+## JSDoc Documentation
+
+### Utility Functions:
+Always document utility functions with JSDoc:
+
+```javascript
+/**
+ * Formats price in Russian locale format
+ * @param {number} price - The price to format
+ * @returns {string} Formatted price string (e.g., "1 234,56 ₽")
+ * @throws {Error} When price is not a valid number
+ */
+function formatPrice(price)
+{
+	if (typeof price !== 'number' || isNaN(price))
+		throw new Error('Price must be a valid number')
+	
+	return new Intl.NumberFormat('ru-RU', {
+		style: 'currency',
+		currency: 'RUB'
+	}).format(price)
+}
+```
+
+### API Functions:
+Document API functions with parameters and return types:
+
+```javascript
+/**
+ * Fetches user profile data from server
+ * @param {string} userId - Unique user identifier
+ * @param {Object} options - Request options
+ * @param {boolean} options.includeStats - Whether to include user statistics
+ * @returns {Promise<Object>} User profile data with stats if requested
+ */
+async function getUserProfile(userId, options = {})
+{
+	const url = `/api/users/${userId}`
+	const params = new URLSearchParams()
+	
+	if (options.includeStats)
+		params.append('include', 'stats')
+	
+	return await useRequest(`${url}?${params}`)
+}
+```
+
+### Complex Logic:
+Comment complex business logic:
+
+```javascript
+function calculateDiscount(items, userType)
+{
+	// Apply base discount based on user type
+	let discount = userType === 'premium' ? 0.15 : 0.05
+	
+	// Additional bulk discount for large orders
+	const totalItems = items.reduce((sum, item) => sum + item.quantity, 0)
+	if (totalItems >= 10)
+	{
+		// Bulk discount stacks with user discount
+		discount += 0.05
+	}
+	
+	// Cap maximum discount at 25%
+	return Math.min(discount, 0.25)
+}
+```
+
+## Vue Component Documentation
+
+### Component Props:
+Document component props and their purposes:
+
+```vue
+<script>
+	/**
+	 * UserCard component displays user information in a card format
+	 * Supports featured styling and click events
+	 */
+	export default {
+		name: 'UserCard',
+		props:
+		{
+			/**
+			 * User data object containing profile information
+			 */
+			user:
+			{
+				type: Object,
+				required: true,
+				validator: (user) => user.name && user.email
+			},
+			/**
+			 * Whether to apply featured styling to the card
+			 */
+			featured:
+			{
+				type: Boolean,
+				default: false
+			}
+		},
+		emits: [
+			/**
+			 * Emitted when card is clicked
+			 * @param {Object} user - The user data object
+			 */
+			'user-selected'
+		]
+	}
+</script>
+```
+
+### Complex Methods:
+Document complex component methods:
+
+```javascript
+/**
+ * Validates form data and shows appropriate error messages
+ * @param {Object} formData - Form data to validate
+ * @returns {boolean} True if validation passes, false otherwise
+ */
+validateForm(formData)
+{
+	const errors = []
+	
+	// Check required fields
+	if (!formData.email)
+		errors.push('Email is required')
+	
+	// Validate email format
+	if (formData.email && !this.isValidEmail(formData.email))
+		errors.push('Invalid email format')
+	
+	// Show errors if any
+	if (errors.length > 0)
+	{
+		this.showValidationErrors(errors)
+		return false
+	}
+	
+	return true
+}
+```
+
+## Comment Style Guidelines
+- Use clear, concise language
+- Explain "why" not "what" when possible
+- Keep comments up-to-date with code changes
+- Use proper grammar and spelling
+- Avoid obvious comments that just restate the code

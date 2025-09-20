@@ -1,0 +1,138 @@
+---
+globs: *.vue
+description: Vue component development guidelines
+---
+
+# Vue Component Development
+
+## Component Rules
+- **Component naming**: PascalCase (e.g., `UserCard.vue`, `NewsList.vue`)
+- **Language**: JavaScript (avoid TypeScript for now)
+- **DOM manipulation**: Avoid direct DOM access, use Vue methods and Virtual DOM
+- **Component organization**: Group by functionality in folders
+
+## Component Structure
+- If component is in `components/Blog/Card.vue`, name it `blog-card`
+- Import as `<BlogCard />`
+- Use BEM methodology for CSS classes
+- Only use BEM classes or global classes with `g-` prefix in HTML
+
+## Component Examples
+
+### Basic Component Structure:
+```vue
+<template>
+	<div class="user-card user-card--featured">
+		<div class="user-card__header">
+			<img class="user-card__avatar" src="avatar.jpg" alt="Avatar">
+			<h2 class="user-card__title">Иван Иванов</h2>
+		</div>
+		<div class="user-card__content">
+			<p>Описание пользователя...</p>
+			<!-- Standard tags without classes are acceptable -->
+			<h3>Дополнительная информация</h3>
+			<p>Еще один параграф</p>
+		</div>
+	</div>
+</template>
+
+<script>
+	export default {
+		name: 'UserCard',
+		props:
+		{
+			user:
+			{
+				type: Object,
+				required: true
+			}
+		},
+		computed:
+		{
+			fullName()
+			{
+				return `${this.user.firstName} ${this.user.lastName}`
+			}
+		},
+		methods:
+		{
+			handleClick()
+			{
+				this.$emit('user-selected', this.user)
+			}
+		}
+	}
+</script>
+
+<style scoped>
+	.user-card
+	{
+		padding: 20px;
+		border: 1px solid #ccc;
+		border-radius: 8px;
+		transition: box-shadow 0.3s ease;
+	}
+	
+	.user-card:hover
+	{
+		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	}
+	
+	.user-card__header
+	{
+		display: flex;
+		align-items: center;
+		margin-bottom: 15px;
+	}
+	
+	.user-card__avatar
+	{
+		width: 50px;
+		height: 50px;
+		border-radius: 50%;
+		margin-right: 15px;
+	}
+	
+	.user-card__title
+	{
+		margin: 0;
+		font-size: 1.2em;
+		font-weight: 600;
+	}
+	
+	.user-card--featured
+	{
+		border-color: #007bff;
+		background-color: #f8f9fa;
+	}
+	
+	.user-card--featured .user-card__title
+	{
+		color: #007bff;
+	}
+</style>
+```
+
+## Form Validation
+Use Vuelidate for form validation:
+- `@vuelidate/core` @^2.0.3
+- `@vuelidate/validators` @^2.0.4
+
+## State Management
+Use Pinia for global state management:
+- `@pinia/nuxt` @^0.5.1
+
+## UI Components
+Use shadcn-nuxt for UI components:
+- `shadcn-nuxt` @^0.10.4
+
+## Composables
+- Must start with `use-` prefix
+- Place in `/composables` directory
+- Example: `useApi.js`, `useRequest.js`, `useToast.js`
+
+## Component Communication
+- Use props for parent-to-child data
+- Use `$emit` for child-to-parent events
+- Use Pinia stores for global state
+- Use provide/inject for deeply nested components

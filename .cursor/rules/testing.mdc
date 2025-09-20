@@ -1,0 +1,207 @@
+---
+globs: *.test.js,*.spec.js
+description: Testing guidelines and best practices
+---
+
+# Testing Guidelines
+
+## When to Write Tests
+
+### Required Test Coverage:
+- **Functional changes** or new features
+- **Business logic**: calculations, filters, sorting, form validation
+- **Regression**: when previously working functionality breaks
+- **Component chains**: sequential actions with multiple outcomes
+
+### Test Structure
+Use Vitest as the testing framework with the following structure:
+
+```javascript
+import { describe, test, expect, beforeEach } from 'vitest'
+import { setActivePinia, createPinia } from 'pinia'
+
+describe('Component/Function Name', () => {
+	beforeEach(() => {
+		// Setup before each test
+		setActivePinia(createPinia())
+	})
+	
+	test('should do something specific', () => {
+		// Test implementation
+		expect(result).toBe(expected)
+	})
+})
+```
+
+## Testing Methods
+
+### describe()
+Groups related tests together for better organization:
+```javascript
+describe('UserStore', () => {
+	// User store tests
+})
+
+describe('formatPrice utility', () => {
+	// Price formatting tests  
+})
+```
+
+### test() and it()
+Define individual test cases:
+- **First argument**: String describing what is being tested
+- **Second argument**: Function containing the test logic
+
+```javascript
+test('should calculate total price correctly', () => {
+	const items = [
+		{ price: 10.50 },
+		{ price: 25.00 }
+	]
+	
+	const total = calculateTotal(items)
+	
+	expect(total).toBe(35.50)
+})
+
+it('should validate email format', () => {
+	const validEmail = 'user@example.com'
+	const invalidEmail = 'invalid-email'
+	
+	expect(validateEmail(validEmail)).toBe(true)
+	expect(validateEmail(invalidEmail)).toBe(false)
+})
+```
+
+### expect() Assertions
+Main assertion methods for testing:
+
+```javascript
+// Strict equality (===)
+expect(result).toBe(expected)
+
+// Deep object comparison
+expect(object).toEqual(expectedObject)
+
+// Truthy/falsy checks
+expect(value).toBeTruthy()
+expect(value).toBeFalsy()
+
+// Array/string contains
+expect(array).toContain(item)
+expect(string).toContain(substring)
+
+// Error throwing
+expect(() => function()).toThrow()
+expect(() => function()).toThrow('Specific error message')
+```
+
+## Pinia Store Testing
+
+### Setup for Store Tests:
+```javascript
+import { setActivePinia, createPinia } from 'pinia'
+import { useUserStore } from '@/stores/user'
+
+describe('UserStore', () => {
+	beforeEach(() => {
+		// Create fresh Pinia instance for each test
+		setActivePinia(createPinia())
+	})
+	
+	test('should initialize with default state', () => {
+		const userStore = useUserStore()
+		
+		expect(userStore.isAuthenticated).toBe(false)
+		expect(userStore.user).toBeNull()
+	})
+	
+	test('should login user successfully', () => {
+		const userStore = useUserStore()
+		const userData = { id: 1, name: 'John Doe' }
+		
+		userStore.login(userData)
+		
+		expect(userStore.isAuthenticated).toBe(true)
+		expect(userStore.user).toEqual(userData)
+	})
+})
+```
+
+## Component Testing
+
+### Vue Component Test Example:
+```javascript
+import { mount } from '@vue/test-utils'
+import UserCard from '@/components/UserCard.vue'
+
+describe('UserCard', () => {
+	test('should render user information', () => {
+		const user = {
+			name: 'John Doe',
+			email: 'john@example.com'
+		}
+		
+		const wrapper = mount(UserCard, {
+			props: { user }
+		})
+		
+		expect(wrapper.text()).toContain('John Doe')
+		expect(wrapper.text()).toContain('john@example.com')
+	})
+	
+	test('should emit event when clicked', async () => {
+		const user = { id: 1, name: 'John Doe' }
+		const wrapper = mount(UserCard, {
+			props: { user }
+		})
+		
+		await wrapper.trigger('click')
+		
+		expect(wrapper.emitted('user-selected')).toBeTruthy()
+		expect(wrapper.emitted('user-selected')[0]).toEqual([user])
+	})
+})
+```
+
+## Utility Function Testing
+
+### Example Utility Test:
+```javascript
+import { formatPrice } from '@/utils/formatPrice'
+
+describe('formatPrice utility', () => {
+	test('should format price in RU format', () => {
+		expect(formatPrice(1234.56)).toBe('1 234,56 ₽')
+		expect(formatPrice(0)).toBe('0 ₽')
+		expect(formatPrice(1000000)).toBe('1 000 000 ₽')
+	})
+	
+	test('should handle invalid input', () => {
+		expect(() => formatPrice('invalid')).toThrow()
+		expect(() => formatPrice(null)).toThrow()
+	})
+})
+```
+
+## Test File Organization
+Mirror source structure in `/tests` directory:
+```
+/tests
+├── components/
+│   ├── UserCard.test.js
+│   └── NewsList.test.js
+├── stores/
+│   └── user.test.js
+└── utils/
+    └── formatPrice.test.js
+```
+
+## Best Practices
+- Write descriptive test names
+- Test one thing at a time
+- Use meaningful assertions
+- Clean up after tests (beforeEach/afterEach)
+- Test both happy path and edge cases
+- Mock external dependencies
+- Keep tests simple and focused

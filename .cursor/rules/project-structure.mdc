@@ -1,0 +1,62 @@
+---
+alwaysApply: true
+description: Project structure and directory organization guidelines
+---
+
+# Project Structure Guide
+This is a Nuxt 3 project with the following structure:
+
+## Core Directories
+
+### `/api`
+- Contains API request functions organized by modules (auth.js, user.js, etc.)
+- Group identical requests together to avoid duplication
+- Exception: single-use requests on specific pages don't need modules
+
+### `/assets`
+- Global styles accessible throughout the project
+- `/fonts` - Font files
+- `/styles` - SCSS files organized as:
+  - `base/_fonts.scss` - Font declarations
+  - `base/_global.scss` - Reusable global styles
+  - `base/_mixins.scss` - SCSS mixins
+  - `base/_variables.scss` - SCSS variables
+  - `index.scss` - Main SCSS file
+  - `tailwind.css` - Tailwind styles
+
+### `/components`
+- Reusable application components
+- Group by functionality in folders (User/, News/, Forms/)
+- `/ui` - Custom UI components
+- `/shadcn-ui` - shadcn-ui components
+
+### `/composables`
+- All functional components (composition functions)
+- Must start with `use-` prefix
+
+### `/pages`
+- All application pages using Nuxt 3 file-based routing
+
+### `/plugins`
+- Third-party and custom plugins
+
+### `/public`
+- Favicons and static images
+
+### `/utils`
+- Utility functions (e.g., formatPrice.js for RU price formatting)
+
+### `/tests`
+- Test files organized to mirror source structure
+
+## File Naming Conventions
+- **Folders**: kebab-case (`user-profile/`, `news-list/`)
+- **Files (non-components)**: kebab-case (`user-service.js`, `api-utils.js`)
+- **Components**: PascalCase (`UserCard.vue`, `NewsList.vue`)
+
+## Technology Stack
+- Framework: Nuxt 3 @^3.12.4
+- State Management: @pinia/nuxt @^0.5.1
+- UI Library: shadcn-nuxt @^0.10.4
+- Preprocessor: SASS @^1.77.8
+- Validation: @vuelidate/core @^2.0.3, @vuelidate/validators @^2.0.4
