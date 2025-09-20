@@ -10,9 +10,10 @@
 <template>
 	<div class="default-layout">
 		<Header />
-		<main>
+		<main class="main-content">
 			<slot />
 		</main>
+		<Footer />
 	</div>
 
 	<Teleport to="body">
@@ -21,5 +22,15 @@
 </template>
 
 <style lang='scss'>
+	.default-layout
+	{
+		min-height: 100vh;
+		display: flex;
+		flex-direction: column;
+	}
 	
+	.main-content
+	{
+		flex: 1;
+	}
 </style>

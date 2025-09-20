@@ -1,45 +1,43 @@
 <template>
-	<header class="header">
-		<div class="container">
-			<div class="header__content">
-				<!-- Логотип -->
-				<div class="header__logo">
-					<NuxtLink to="/" class="header__logo-link">
-						<span class="header__logo-text">MedPulse</span>
-					</NuxtLink>
-				</div>
-
-				<!-- Навигационное меню -->
-				<nav class="header__nav">
-					<ul class="header__nav-list">
-						<li class="header__nav-item">
-							<NuxtLink to="/pharmacy" class="header__nav-link">Фармацевтика</NuxtLink>
-						</li>
-						<li class="header__nav-item">
-							<NuxtLink to="/surgery" class="header__nav-link">Хирургия</NuxtLink>
-						</li>
-						<li class="header__nav-item">
-							<NuxtLink to="/cardiology" class="header__nav-link">Кардиология</NuxtLink>
-						</li>
-						<li class="header__nav-item">
-							<NuxtLink to="/oncology" class="header__nav-link">Онкология</NuxtLink>
-						</li>
-						<li class="header__nav-item">
-							<NuxtLink to="/technology" class="header__nav-link">Технологии</NuxtLink>
-						</li>
-						<li class="header__nav-item">
-							<NuxtLink to="/more" class="header__nav-link">Еще</NuxtLink>
-						</li>
-					</ul>
-				</nav>
-
-				<!-- Мобильное меню -->
-				<button class="header__mobile-toggle">
-					<span class="header__mobile-line"></span>
-					<span class="header__mobile-line"></span>
-					<span class="header__mobile-line"></span>
-				</button>
+	<header class="header container">
+		<div class="header__content">
+			<!-- Логотип -->
+			<div class="header__logo">
+				<NuxtLink to="/" class="header__logo-link">
+					<span class="header__logo-text">MedPulse</span>
+				</NuxtLink>
 			</div>
+
+			<!-- Навигационное меню -->
+			<nav class="header__nav">
+				<ul class="header__nav-list">
+					<li class="header__nav-item">
+						<NuxtLink to="/pharmacy" class="header__nav-link">Фармацевтика</NuxtLink>
+					</li>
+					<li class="header__nav-item">
+						<NuxtLink to="/surgery" class="header__nav-link">Хирургия</NuxtLink>
+					</li>
+					<li class="header__nav-item">
+						<NuxtLink to="/cardiology" class="header__nav-link">Кардиология</NuxtLink>
+					</li>
+					<li class="header__nav-item">
+						<NuxtLink to="/oncology" class="header__nav-link">Онкология</NuxtLink>
+					</li>
+					<li class="header__nav-item">
+						<NuxtLink to="/technology" class="header__nav-link">Технологии</NuxtLink>
+					</li>
+					<li class="header__nav-item">
+						<NuxtLink to="/more" class="header__nav-link">Еще</NuxtLink>
+					</li>
+				</ul>
+			</nav>
+
+			<!-- Мобильное меню -->
+			<button class="header__mobile-toggle">
+				<span class="header__mobile-line"></span>
+				<span class="header__mobile-line"></span>
+				<span class="header__mobile-line"></span>
+			</button>
 		</div>
 
 		<!-- Мобильное меню -->
@@ -85,8 +83,6 @@
 	justify-content: left;
 	padding: 21px 30px;
 	position: relative;
-	max-width: 1180px;
-	margin: 0 auto;
 	height: 76px;
 	border: 1px solid #000;
 
