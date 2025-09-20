@@ -3,7 +3,6 @@
 		<div class="sidebar__content">
 			<!-- Здесь может быть дополнительный контент для боковой панели -->
 			<div class="sidebar__placeholder">
-				<p>Дополнительный контент</p>
 			</div>
 		</div>
 	</aside>

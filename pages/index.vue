@@ -11,7 +11,7 @@
 		source: 'medportal.ru',
 		description: 'Учёные выявили неожиданный защитный эффект сезонной вакцинации.',
 		date: '15 авг. 25г',
-		imageUrl: '/images/hero-news.jpg'
+		imageUrl: 'https://avatars.mds.yandex.net/i?id=2dcdec5949a38788cfaf681467d01037_l-5227767-images-thumbs&n=13'
 	};
 
 	// Данные для списка новостей
@@ -74,18 +74,16 @@
 </script>
 
 <template>
-	<div class="index-page">
-		<div class="container index-page__container">
-			<div class="index-page__main">
-				<NewsList
-					:hero-news="heroNews"
-					:news-items="newsItems"
-				/>
-			</div>
-			
-			<div class="index-page__sidebar">
-				<Sidebar />
-			</div>
+	<div class="index-page container">
+		<div class="index-page__main">
+			<NewsList
+				:hero-news="heroNews"
+				:news-items="newsItems"
+			/>
+		</div>
+		
+		<div class="index-page__sidebar">
+			<Sidebar />
 		</div>
 	</div>
 </template>
@@ -93,23 +91,13 @@
 <style lang='scss'>
 	.index-page
 	{
-		padding: 20px 0;
-	}
-	
-	.index-page__container
-	{
 		display: flex;
-		gap: 30px;
-	}
-	
-	.index-page__main
-	{
-		flex: 1;
+		gap: 20px;
+		margin-top: 20px;	
 	}
 	
 	.index-page__sidebar
 	{
 		width: 380px;
-		flex-shrink: 0;
 	}
 </style>

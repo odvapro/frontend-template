@@ -22,6 +22,7 @@
 				:category="news.category"
 				:date="news.date"
 			/>
+			<p>еще</p>
 		</div>
 	</section>
 </template>
@@ -49,18 +50,12 @@
 	.news-list
 	{
 		width: 780px;
-		height: 1250px;
 	}
-	
-	.news-list__hero
-	{
-		margin-bottom: 33px;
-	}
-	
+	.news-list__hero { margin-bottom: 20px; }
 	.news-list__items
 	{
 		display: flex;
 		flex-direction: column;
-		gap: 15px;
+		gap: 20px;
 	}
 </style>

@@ -22,9 +22,7 @@ a { text-decoration: none; }
 {
 	max-width: $desktop;
 	margin: 0 auto;
-	padding: 0 16px;
-
-	@include mq($tablet) { padding: 0 32px; }
+	padding: 0;
 }
 
 // transition -----------
