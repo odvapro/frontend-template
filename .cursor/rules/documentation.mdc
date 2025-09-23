@@ -22,11 +22,11 @@ const user = {
 	name: "John Doe",
 	age: 30,
 	email: "john.doe@example.com"
-}
+};
 
 // ❌ Don't comment simple functions
 // Function to add two numbers
-const add = (a, b) => a + b
+const add = (a, b) => a + b;
 ```
 
 ## JSDoc Documentation
@@ -41,16 +41,15 @@ Always document utility functions with JSDoc:
  * @returns {string} Formatted price string (e.g., "1 234,56 ₽")
  * @throws {Error} When price is not a valid number
  */
-function formatPrice(price)
-{
+const formatPrice = (price) => {
 	if (typeof price !== 'number' || isNaN(price))
 		throw new Error('Price must be a valid number')
-	
+
 	return new Intl.NumberFormat('ru-RU', {
 		style: 'currency',
 		currency: 'RUB'
-	}).format(price)
-}
+	}).format(price);
+};
 ```
 
 ### API Functions:
@@ -64,38 +63,35 @@ Document API functions with parameters and return types:
  * @param {boolean} options.includeStats - Whether to include user statistics
  * @returns {Promise<Object>} User profile data with stats if requested
  */
-async function getUserProfile(userId, options = {})
-{
-	const url = `/api/users/${userId}`
-	const params = new URLSearchParams()
-	
+const getUserProfile = async (userId, options = {}) => {
+	const url = `/api/users/${userId}`;
+	const params = new URLSearchParams();
+
 	if (options.includeStats)
-		params.append('include', 'stats')
-	
-	return await useRequest(`${url}?${params}`)
-}
+		params.append('include', 'stats');
+
+	return await useRequest(`${url}?${params}`);
+};
 ```
 
 ### Complex Logic:
 Comment complex business logic:
 
 ```javascript
-function calculateDiscount(items, userType)
-{
+const calculateDiscount = (items, userType) => {
 	// Apply base discount based on user type
-	let discount = userType === 'premium' ? 0.15 : 0.05
-	
+	let discount = userType === 'premium' ? 0.15 : 0.05;
+
 	// Additional bulk discount for large orders
-	const totalItems = items.reduce((sum, item) => sum + item.quantity, 0)
-	if (totalItems >= 10)
-	{
+	const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
+	if (totalItems >= 10) {
 		// Bulk discount stacks with user discount
-		discount += 0.05
-	}
-	
+		discount += 0.05;
+	};
+
 	// Cap maximum discount at 25%
-	return Math.min(discount, 0.25)
-}
+	return Math.min(discount, 0.25);
+};
 ```
 
 ## Vue Component Documentation
@@ -104,41 +100,25 @@ function calculateDiscount(items, userType)
 Document component props and their purposes:
 
 ```vue
-<script>
+<script setup>
 	/**
 	 * UserCard component displays user information in a card format
 	 * Supports featured styling and click events
 	 */
-	export default {
-		name: 'UserCard',
-		props:
-		{
-			/**
-			 * User data object containing profile information
-			 */
-			user:
-			{
-				type: Object,
-				required: true,
-				validator: (user) => user.name && user.email
-			},
-			/**
-			 * Whether to apply featured styling to the card
-			 */
-			featured:
-			{
-				type: Boolean,
-				default: false
-			}
+
+	// props
+	const props = defineProps({
+		name: {
+			type: String,
+			required: true,
 		},
-		emits: [
-			/**
-			 * Emitted when card is clicked
-			 * @param {Object} user - The user data object
-			 */
-			'user-selected'
-		]
-	}
+	});
+
+	// emits
+	const emit = defineEmits(['handleClick']);
+
+	// functions
+	const handleClick = () => emit('handleClick');
 </script>
 ```
 
@@ -154,22 +134,21 @@ Document complex component methods:
 validateForm(formData)
 {
 	const errors = []
-	
+
 	// Check required fields
 	if (!formData.email)
 		errors.push('Email is required')
-	
+
 	// Validate email format
 	if (formData.email && !this.isValidEmail(formData.email))
 		errors.push('Invalid email format')
-	
+
 	// Show errors if any
-	if (errors.length > 0)
-	{
+	if (errors.length > 0) {
 		this.showValidationErrors(errors)
 		return false
 	}
-	
+
 	return true
 }
 ```

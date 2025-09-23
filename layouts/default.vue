@@ -11,10 +11,14 @@
 	<div class="default-layout">
 		<Header />
 		<slot />
-		<Footer />
+		<!-- <Footer /> -->
 	</div>
 
 	<Teleport to="body">
 		<HugePreloader v-if="loading" />
 	</Teleport>
 </template>
+
+<style lang="scss">
+
+</style>

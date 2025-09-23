@@ -25,7 +25,7 @@ describe('Component/Function Name', () => {
 		// Setup before each test
 		setActivePinia(createPinia())
 	})
-	
+
 	test('should do something specific', () => {
 		// Test implementation
 		expect(result).toBe(expected)
@@ -43,7 +43,7 @@ describe('UserStore', () => {
 })
 
 describe('formatPrice utility', () => {
-	// Price formatting tests  
+	// Price formatting tests
 })
 ```
 
@@ -58,16 +58,16 @@ test('should calculate total price correctly', () => {
 		{ price: 10.50 },
 		{ price: 25.00 }
 	]
-	
+
 	const total = calculateTotal(items)
-	
+
 	expect(total).toBe(35.50)
 })
 
 it('should validate email format', () => {
 	const validEmail = 'user@example.com'
 	const invalidEmail = 'invalid-email'
-	
+
 	expect(validateEmail(validEmail)).toBe(true)
 	expect(validateEmail(invalidEmail)).toBe(false)
 })
@@ -108,20 +108,20 @@ describe('UserStore', () => {
 		// Create fresh Pinia instance for each test
 		setActivePinia(createPinia())
 	})
-	
+
 	test('should initialize with default state', () => {
 		const userStore = useUserStore()
-		
+
 		expect(userStore.isAuthenticated).toBe(false)
 		expect(userStore.user).toBeNull()
 	})
-	
+
 	test('should login user successfully', () => {
 		const userStore = useUserStore()
 		const userData = { id: 1, name: 'John Doe' }
-		
+
 		userStore.login(userData)
-		
+
 		expect(userStore.isAuthenticated).toBe(true)
 		expect(userStore.user).toEqual(userData)
 	})
@@ -141,23 +141,23 @@ describe('UserCard', () => {
 			name: 'John Doe',
 			email: 'john@example.com'
 		}
-		
+
 		const wrapper = mount(UserCard, {
 			props: { user }
 		})
-		
+
 		expect(wrapper.text()).toContain('John Doe')
 		expect(wrapper.text()).toContain('john@example.com')
 	})
-	
+
 	test('should emit event when clicked', async () => {
 		const user = { id: 1, name: 'John Doe' }
 		const wrapper = mount(UserCard, {
 			props: { user }
 		})
-		
+
 		await wrapper.trigger('click')
-		
+
 		expect(wrapper.emitted('user-selected')).toBeTruthy()
 		expect(wrapper.emitted('user-selected')[0]).toEqual([user])
 	})
@@ -176,7 +176,7 @@ describe('formatPrice utility', () => {
 		expect(formatPrice(0)).toBe('0 ₽')
 		expect(formatPrice(1000000)).toBe('1 000 000 ₽')
 	})
-	
+
 	test('should handle invalid input', () => {
 		expect(() => formatPrice('invalid')).toThrow()
 		expect(() => formatPrice(null)).toThrow()

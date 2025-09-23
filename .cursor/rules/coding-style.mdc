@@ -6,25 +6,34 @@ description: Allman coding style and naming conventions
 # Coding Style Guidelines
 
 ## Allman Style for Braces
-Use Allman style for all curly braces placement:
+Use Allman style for css curly braces placement:
 - Opening braces on new line, aligned with control structure
 - **Important**: Avoid braces for single-line statements (if, for, while, etc.)
+
+## CSS Formatting Rules
+- Single property: write on one line
+- Opening brace: on a new line after selector
+- Closing brace: on a new line after properties
+- **Avoid trailing spaces**
+
+## SCSS usage
+- use scss variables for colors, fonts and media queries in code, you can find them on '@/assets/base/_variables.scss'. If there were not a variable - create it.
+- use global scss styles if it possible, you can find them on '@/assets/base/_global.scss'.
+- use mixins for media query and transtions, you can find them on '@/assets/base/_mixins.scss'.
 
 ### JavaScript Examples:
 ```javascript
 // Functions
-function calculateTotal(items)
-{
+const calculateTotal = (items) => {
 	let total = 0;
 	for (let i = 0; i < items.length; i++)
 		total += items[i].price;
-	
+
 	return total;
-}
+};
 
 // Conditional statements
-if (user.isAuthenticated)
-{
+if (user.isAuthenticated) {
 	console.log('User authenticated');
 	if (user.hasPermission('admin'))
 		showAdminPanel();
@@ -33,18 +42,16 @@ else
 	redirectToLogin();
 
 // Loops
-for (let i = 0; i < array.length; i++)
-{
+for (let i = 0; i < array.length; i++) {
 	if (array[i].isValid)
 		processItem(array[i]);
 }
 
 // Objects
-const userConfig = 
-{
+const userConfig = {
 	name: 'John Doe',
 	email: 'john@example.com',
-	settings: 
+	settings:
 	{
 		theme: 'dark',
 		notifications: true
@@ -56,7 +63,7 @@ const userConfig =
 
 ### Code Naming:
 - **Functions and variables**: camelCase
-- **Constants**: SCREAM_CASE
+- **Constants**: SCREAM_CASE or camelCase
 - **CSS selectors**: BEM methodology
 
 ### CSS BEM Naming:
@@ -68,26 +75,30 @@ const userConfig =
 ### BEM Examples:
 ```scss
 // Block
-.user-card {
+.user-card
+{
 	padding: 20px;
 	border: 1px solid #ccc;
+
+	// Modifier
+	&--featured
+	{
+		border-color: #007bff;
+		background-color: #f8f9fa;
+	}
 }
 
 // Element
-.user-card__header {
+.user-card__header
+{
 	display: flex;
 	align-items: center;
 	margin-bottom: 15px;
 }
 
-// Modifier
-.user-card--featured {
-	border-color: #007bff;
-	background-color: #f8f9fa;
-}
-
 // Global class
-.g-container {
+.g-container
+{
 	max-width: 1200px;
 	margin: 0 auto;
 	padding: 0 20px;
@@ -98,15 +109,48 @@ const userConfig =
 - **Use tabs** (4 spaces equivalent)
 - **Consistent indentation** across all files
 - **Inside Vue template/script/style tags**: indent one tab from start
-- **Avoid `&` in SCSS** for better readability and searchability
+- **Avoid `&` everywhere in SCSS** for better readability and searchability, but you can use & if you whrite "Modifier"
+- **Avoid trailing spaces**
 
 ### Vue Component Structure:
 ```vue
+<script setup>
+	// props
+	const props = defineProps({
+		title: {
+			type: String,
+			required: true,
+		},
+		obj: {
+			type: Object,
+			default: () => ({
+				id: 1,
+				title: '',
+			});
+		},
+	});
+
+	// emits
+	const emit = defineEmits(['trigger']);
+
+	// variables
+	const userName = ref('Mark');
+
+	// functions
+	const changeUserName = () => userName.value = 'Michael';
+
+	const multiple = (a, b) => {
+		const output = a * b;
+
+		return output
+	};
+</script>
+
 <template>
 	<div class="user-card">
 		<div class="user-card__header">
-			<img class="user-card__avatar" src="avatar.jpg" alt="Avatar">
-			<h2 class="user-card__title">Иван Иванов</h2>
+			<img class="user-card__header-avatar" src="avatar.jpg" alt="Avatar">
+			<h2 class="user-card__header-title">Иван Иванов</h2>
 		</div>
 		<div class="user-card__content">
 			<p>Описание пользователя...</p>
@@ -114,21 +158,7 @@ const userConfig =
 	</div>
 </template>
 
-<script>
-	export default {
-		name: 'UserCard',
-		props:
-		{
-			user:
-			{
-				type: Object,
-				required: true
-			}
-		}
-	}
-</script>
-
-<style scoped>
+<style lang="scss">
 	.user-card
 	{
 		padding: 20px;

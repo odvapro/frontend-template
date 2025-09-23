@@ -13,7 +13,7 @@ Use custom `useRequest` (based on `useFetch`) for server-side requests:
 - Data available during hydration
 - Prevents loading states for initial data
 
-### Client-Side Requests  
+### Client-Side Requests
 Use custom `useClientRequest` (based on `$fetch`) for client-side requests:
 - Standard requests executed on client
 - Used for user interactions and dynamic content
@@ -26,10 +26,13 @@ Organize API functions by modules in `/api` directory:
 ```
 /api
 ├── auth.js          # Authentication requests
-├── user.js          # User-related requests  
+├── user.js          # User-related requests
 ├── news.js          # News/articles requests
 └── products.js      # Product requests
 ```
+
+### `/composables/useApi.js` Structure
+This composable contains all api files and returns them. Developer can use this composable to get object of requests
 
 ### Module Example:
 ```javascript
@@ -44,7 +47,7 @@ export const userApi = {
 	{
 		return await useRequest(`/api/users/${userId}`)
 	},
-	
+
 	/**
 	 * Update user profile
 	 * @param {string} userId - User ID
@@ -56,67 +59,43 @@ export const userApi = {
 		return await useClientRequest(`/api/users/${userId}`, {
 			method: 'PUT',
 			body: userData
-		})
-	}
-}
+		});
+	},
+};
 ```
 
 ## Usage Examples
 
 ### Server-Side Request (useRequest):
 ```vue
-<script>
+<script setup>
+	const { userApi } = useApi();
+
 	// This runs on server, data available immediately
-	const { data: news } = await useRequest('/api/news/latest')
-	
-	export default {
-		name: 'NewsPage',
-		setup()
-		{
-			return {
-				news
-			}
-		}
-	}
+	const { data: user } = userApi.getUserProfile(1);
 </script>
 ```
 
 ### Client-Side Request (useClientRequest):
 ```vue
-<script>
-	export default {
-		name: 'UserProfile',
-		data()
-		{
-			return {
-				user: null,
-				loading: false
-			}
-		},
-		methods:
-		{
-			async loadUserData()
-			{
-				this.loading = true
-				try
-				{
-					this.user = await useClientRequest('/api/user/profile')
-				}
-				catch (error)
-				{
-					console.error('Failed to load user data:', error)
-				}
-				finally
-				{
-					this.loading = false
-				}
-			}
-		},
-		async mounted()
-		{
-			await this.loadUserData()
+<script setup>
+	const { userApi } = useApi();
+
+	const user = ref();
+	const updateUserData = async () => {
+		try {
+			const response = await userApi.updateUserProfile(1, {
+				name: 'Mark';
+			});
+
+			user = response.data;
 		}
-	}
+		catch(e) {
+			console.error(e);
+
+			useToast('error', 'Что-то пошло не так');
+		};
+	};
 </script>
 ```
 
@@ -124,20 +103,18 @@ export const userApi = {
 Always implement proper error handling for API requests:
 
 ```javascript
-async function fetchData()
-{
-	try
-	{
-		const data = await useClientRequest('/api/data')
-		return data
+const fetchData = async () => {
+	try {
+		const data = await useClientRequest('/api/data');
+		return data;
 	}
-	catch (error)
-	{
-		console.error('API request failed:', error)
+	catch (error) {
+		console.error('API request failed:', error);
+
 		// Handle error appropriately
-		throw error
-	}
-}
+		throw error;
+	};
+};
 ```
 
 ## Request Configuration
