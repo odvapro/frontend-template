@@ -37,7 +37,7 @@ function calculateTotal(items)
 	let total = 0;
 	for (let i = 0; i < items.length; i++)
 		total += items[i].price;
-	
+
 	return total;
 }
 
@@ -45,7 +45,7 @@ function validateUser(user)
 {
 	if (!user.email)
 		throw new Error('Email is required');
-	
+
 	return true;
 }
 
@@ -71,11 +71,11 @@ while (condition)
 	doSomething();
 
 // Объекты и классы
-const userConfig = 
+const userConfig =
 {
 	name: 'John Doe',
 	email: 'john@example.com',
-	settings: 
+	settings:
 	{
 		theme: 'dark',
 		notifications: true

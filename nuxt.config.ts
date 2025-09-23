@@ -1,43 +1,57 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
+import tailwindcss from '@tailwindcss/vite';
+
 export default defineNuxtConfig({
-				compatibilityDate: '2024-11-01',
-				devtools: { enabled: true },
+	compatibilityDate: '2024-11-01',
+	devtools: { enabled: true },
 
-				modules: [
-								'@pinia/nuxt',
-				],
+	modules: ['@pinia/nuxt', '@vueuse/nuxt', 'shadcn-nuxt'],
 
-				// env, пожалуйста, создайте в корне проекта env c именем NUXT_PUBLIC_API_HOST, если это требуется ⬇️
+	shadcn: {
+		/**
+		 * Prefix for all the imported component
+		 */
+		prefix: 'Shadcn',
+		/**
+		 * Directory that the component lives in.
+		 * @default "./components/shadcn-ui"
+		 */
+		componentDir: './components/shadcn-ui',
+	},
 
-				// runtimeConfig: {
-				// 	public: {
-				// 		api: process.env.NUXT_PUBLIC_API_HOST,
-				// 	}
-				// },
+	// env, пожалуйста, создайте в корне проекта env c именем NUXT_PUBLIC_API_HOST, если это требуется ⬇️
 
-				// если вам нужно проксировать получение данных с элемента ( или любые другие ) - раскоментируйте код ниже и добавьте данные в env файл с ключом process.env.NUXT_PUBLIC_ELEMENT_HOST ⬇️
+	// runtimeConfig: {
+	// 	public: {
+	// 		api: process.env.NUXT_PUBLIC_API_HOST,
+	// 	}
+	// },
 
-				// nitro: {
-				// 	devProxy: {
-				// 		'/element': {
-				// 			target: process.env.NUXT_PUBLIC_ELEMENT_HOST,
-				// 			changeOrigin: true
-				// 		},
-				// 	},
-				// },
+	// если вам нужно проксировать получение данных с элемента ( или любые другие ) - раскоментируйте код ниже и добавьте данные в env файл с ключом process.env.NUXT_PUBLIC_ELEMENT_HOST ⬇️
 
-				// css base configuration
-				css: ['@/assets/styles/index.scss'],
+	// nitro: {
+	// 	devProxy: {
+	// 		'/element': {
+	// 			target: process.env.NUXT_PUBLIC_ELEMENT_HOST,
+	// 			changeOrigin: true
+	// 		},
+	// 	},
+	// },
 
-				vite: {
-								css: {
-												preprocessorOptions: {
-																scss: {
-																				api: 'modern',
-																				silenceDeprecations: ['import', 'global-builtin', 'legacy-js-api'],
-																				additionalData: `@use "@/assets/styles/base/_variables.scss" as *;  @use "@/assets/styles/base/_mixins.scss" as *;`,
-																},
-												},
-								},
+	// css base configuration
+	css: ['@/assets/styles/index.scss', '@/assets/styles/tailwind.css'],
+
+	vite: {
+		plugins: [
+			tailwindcss(),
+		],
+		css: {
+			preprocessorOptions: {
+				scss: {
+					api: 'modern',
+					silenceDeprecations: ['import', 'global-builtin', 'legacy-js-api'],
+					additionalData: `@use "@/assets/styles/base/_variables.scss" as *;  @use "@/assets/styles/base/_mixins.scss" as *;`,
 				},
+			},
+		},
+	},
 })
