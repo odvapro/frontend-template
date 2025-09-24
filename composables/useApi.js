@@ -1,7 +1,7 @@
-import posts from '@/api/posts.js';
+import postsApi from '@/api/posts.js';
 
 export const useApi = () => {
 	return {
-		posts,
+		postsApi,
 	};
 };

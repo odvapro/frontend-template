@@ -1,5 +1,5 @@
 import { setActivePinia, createPinia } from 'pinia';
-import { user } from '@/stores/user';
+import { useUserStore } from '@/stores/user';
 
 describe('User Store', () => {
 	beforeEach(() => {
@@ -7,14 +7,14 @@ describe('User Store', () => {
 	});
 
 	it('Проверка начального состояния', () => {
-		const store = user();
+		const store = useUserStore();
 		expect(store.name).toBe('Levan Lazarov');
 		expect(store.money).toBe(5000);
 	});
 
 	describe('Actions', () => {
 		it('changeName', async () => {
-			const store = user();
+			const store = useUserStore();
 			const originalName = store.name;
 
 			await store.changeName();
@@ -24,7 +24,7 @@ describe('User Store', () => {
 		});
 
 		it('addMoney: проверка увелечения денег на 100', () => {
-			const store = user();
+			const store = useUserStore();
 			const originalMoney = store.money;
 
 			store.addMoney();
@@ -33,7 +33,7 @@ describe('User Store', () => {
 		});
 
 		it('setToNull: проверка обнуления', () => {
-			const store = user();
+			const store = useUserStore();
 
 			store.setToNull();
 
@@ -43,7 +43,7 @@ describe('User Store', () => {
 
 	describe('Getters', () => {
 		it('multiple: провкрка увелечения денег на 2', () => {
-			const store = user();
+			const store = useUserStore();
 
 			expect(store.multiple).toBe(10000);
 

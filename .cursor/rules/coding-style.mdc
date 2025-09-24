@@ -16,10 +16,97 @@ Use Allman style for css curly braces placement:
 - Closing brace: on a new line after properties
 - **Avoid trailing spaces**
 
-## SCSS usage
-- use scss variables for colors, fonts and media queries in code, you can find them on '@/assets/base/_variables.scss'. If there were not a variable - create it.
-- use global scss styles if it possible, you can find them on '@/assets/base/_global.scss'.
-- use mixins for media query and transtions, you can find them on '@/assets/base/_mixins.scss'.
+## SCSS Usage Guidelines
+
+### Variables
+- **Always use SCSS variables** for colors, fonts, and media queries
+- **Location**: `@/assets/base/_variables.scss`
+- **Rule**: If a variable doesn't exist, create it instead of using hardcoded values
+- **Examples**: `$primary-color`, `$font-size-large`, `$breakpoint-tablet`
+
+### Global Styles
+- **Use global SCSS styles** when possible to avoid duplication
+- **Location**: `@/assets/base/_global.scss`
+- **Rule**: Check existing global styles before writing custom ones
+
+### Mixins
+- **Use mixins** for media queries and transitions
+- **Location**: `@/assets/base/_mixins.scss`
+- **Examples**: `@include mq($tablet)`, `@include transition()`
+- **Rule**: Create new mixins for reusable patterns
+
+### Best Practices
+- **Import order**: Variables → Mixins → Global styles → Component styles
+- **Nesting**: Avoid deep nesting (max 3 levels)
+- **Specificity**: Use BEM methodology to avoid specificity issues
+
+## SCSS `&` Usage Rules
+
+### ✅ DO use `&` for:
+- **Modifiers** (BEM modifiers with `--`): `&--featured`, `&--active`, `&--large`
+- **Pseudo-classes**: `&:hover`, `&:focus`, `&:active`, `&:disabled`
+- **Pseudo-elements**: `&::before`, `&::after`, `&::placeholder`
+- **Media queries**: `&:nth-child()`, `&:last-child`
+- **State classes**: `&.is-active`, `&.is-open`
+
+### ❌ DON'T use `&` for:
+- **BEM elements** (with `__`): Use separate selectors instead of `&__content`, `&__title`, `&__header`
+- **Child elements**: Use separate selectors instead of `& .child-element`
+
+### Examples:
+
+**✅ Correct usage:**
+```scss
+.user-card
+{
+	padding: 20px;
+
+	&:hover
+	{
+		transform: translateY(-5px);
+	}
+
+	&--featured
+	{
+		border-color: #007bff;
+	}
+
+	&.is-active
+	{
+		background: #f8f9fa;
+	}
+}
+
+.user-card__content
+{
+	display: flex;
+	flex-direction: column;
+}
+
+.user-card__title
+{
+	font-size: 1.2em;
+	font-weight: 600;
+}
+```
+
+**❌ Incorrect usage:**
+```scss
+.user-card
+{
+	padding: 20px;
+
+	&__content  // ❌ Don't use & for elements
+	{
+		display: flex;
+	}
+
+	&__title    // ❌ Don't use & for elements
+	{
+		font-size: 1.2em;
+	}
+}
+```
 
 ### JavaScript Examples:
 ```javascript
@@ -109,7 +196,6 @@ const userConfig = {
 - **Use tabs** (4 spaces equivalent)
 - **Consistent indentation** across all files
 - **Inside Vue template/script/style tags**: indent one tab from start
-- **Avoid `&` everywhere in SCSS** for better readability and searchability, but you can use & if you whrite "Modifier"
 - **Avoid trailing spaces**
 
 ### Vue Component Structure:

@@ -1,7 +1,7 @@
 <script setup>
-    const { posts } = useApi();
+    const { postsApi } = useApi();
 
-    const { data, error, refresh } = await posts.fetchPosts();
+    const { data, error, refresh } = await postsApi.fetchPosts();
 </script>
 
 <template>

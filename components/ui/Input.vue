@@ -1,13 +1,14 @@
 <script setup>
 	const props = defineProps({
-		type       : { type: String, default : 'text', },
-		value      : { type: String, required: true },
-		label      : { type: String, default : '' },
-		placeholder: { type: String, default : '' },
+		placeholder: { type: String, default: '' },
 		errorText  : { type: String, default: '' },
-		error      : { type: Boolean, default: false },
 		disabled   : { type: Boolean, default: false },
 		isPhone    : { type: Boolean, default: false },
+		value      : { type: String, required: true },
+		label      : { type: String, default: '' },
+		error      : { type: Boolean, default: false },
+		type       : { type: String, default: 'text', },
+		name       : { type: Boolean, default: '' },
 	});
 	const emit = defineEmits(['update:value', 'triggerIcon']);
 
@@ -53,6 +54,7 @@
 				:value="value"
 				:placeholder="placeholder"
 				:disabled="disabled"
+				:name="name"
 				@focus="focus = true"
 				@blur="focus = false"
 				@input="updateValue($event.target.value)"
@@ -67,6 +69,7 @@
 				:value="value"
 				:placeholder="placeholder"
 				:disabled="disabled"
+				:name="name"
 				@focus="focus = true"
 				@blur="focus = false"
 				@input="updateValue($event.target.value)"

@@ -1,11 +1,11 @@
 <script setup>
 	useSeoMeta({
 		title      : 'СТОР',
-		description: 'СТОР - description',
-		keywords   : 'СТОР - keywords',
+		description: 'СТОР',
+		keywords   : 'СТОР',
 	});
 
-	const userStore = user();
+	const userStore = useUserStore();
 </script>
 
 <template>

@@ -37,8 +37,10 @@
 		// effects
 		&:disabled
 		{
-			pointer-events: none;
+			cursor: not-allowed;
 			opacity: .7;
+
+			&:hover { opacity: .7; }
 		}
 		&:hover { opacity: .8; }
 

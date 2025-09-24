@@ -1,4 +1,6 @@
 <script setup>
+	const confirmDialogStore = useConfirmDialogStore();
+
 	useSeoMeta({
 		title      : 'Все компоненты',
 		description: 'Все компоненты - description',
@@ -17,10 +19,33 @@
 
 	const checkbox = ref(false);
 	const checkboxError = ref(false);
+
+	const openConfirm = () => {
+		confirmDialogStore.openDialog({
+			title: 'Тут тайтл',
+			message: 'Тут описание',
+			onConfirm: async () => {
+				useToast('info', 'Подтвердили');
+			},
+			onCancel: async () => {
+				useToast('info', 'Отменили');
+			},
+		});
+	}
 </script>
 
 <template>
 	<div class="components container">
+		<!-- конфирм -->
+		<h2 class="components__subtitle">
+			Конфирм
+		</h2>
+		<div class="components__wrapper">
+			<UiButton @click.stop="openConfirm">
+				Вызови меня
+			</UiButton>
+		</div>
+
 		<!-- кнопки -->
 		<h2 class="components__subtitle">
 			Вариации кнопок

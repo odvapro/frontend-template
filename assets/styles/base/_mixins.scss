@@ -15,3 +15,8 @@
 @mixin transition() {
 	transition: .2s ease;
 }
+
+@mixin pr() {
+    overflow: hidden;
+    padding-right: var(--scrollbar-width);
+}
