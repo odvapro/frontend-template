@@ -11,7 +11,7 @@ Use Allman style for css curly braces placement:
 - **Important**: Avoid braces for single-line statements (if, for, while, etc.)
 
 ## CSS Formatting Rules
-- Single property: write on one line
+- Single property: write on one line EVERYTHING!
 - Opening brace: on a new line after selector
 - Closing brace: on a new line after properties
 - **Avoid trailing spaces**
@@ -23,6 +23,7 @@ Use Allman style for css curly braces placement:
 - **Location**: `@/assets/base/_variables.scss`
 - **Rule**: If a variable doesn't exist, create it instead of using hardcoded values
 - **Examples**: `$primary-color`, `$font-size-large`, `$breakpoint-tablet`
+- **DO NOT IMPORT LOCATIONS**: Do not import `@/assets/base/_variables.scss` everywhere where you use varibles, because we already import it in nuxt.config.ts
 
 ### Global Styles
 - **Use global SCSS styles** when possible to avoid duplication
@@ -46,7 +47,6 @@ Use Allman style for css curly braces placement:
 - **Modifiers** (BEM modifiers with `--`): `&--featured`, `&--active`, `&--large`
 - **Pseudo-classes**: `&:hover`, `&:focus`, `&:active`, `&:disabled`
 - **Pseudo-elements**: `&::before`, `&::after`, `&::placeholder`
-- **Media queries**: `&:nth-child()`, `&:last-child`
 - **State classes**: `&.is-active`, `&.is-open`
 
 ### ❌ DON'T use `&` for:
